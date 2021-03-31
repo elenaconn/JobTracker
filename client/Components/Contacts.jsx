@@ -7,18 +7,31 @@ function ContactForm () {
   const [info, setInfo] = useState([]);
   
   const onSubmit = (data) => {
-    console.log('form data', data);
     setInfo(oldInfo => [...oldInfo, data]);
-    console.log('info', info);
   };
 
-  const infoArr = [<div>hello</div>];
-  useEffect(() => {
+  const infoArr = [];
     for (let i = 0; i < info.length; i++){
-      infoArr.push(<div>hello2</div>)
+      infoArr.push(<div>
+        <li>Name: 
+          {info[i].Name}
+        </li>
+        <li>Position: 
+          {info[i].Position}
+        </li>
+        <li>Email: 
+          {info[i].Email}
+        </li>
+        <li>Phone Number: 
+          {info[i].Phone}
+        </li>
+        <li>LinkedIn: 
+          {info[i].LinkedIn}
+        </li>
+        <br />
+      </div>
+      );
     }
-    console.log(infoArr);
-  }, []);
   
   return (
     <div>
@@ -30,7 +43,7 @@ function ContactForm () {
             <input placeholder="Name" type="text" ref={register} name="Name"/> 
             <input placeholder="Position" type="text" ref={register} name="Position"/>
             <input placeholder="Email" type="text" ref={register} name="Email"/>
-            <input placeholder="Phone Number" type="text" ref={register} name="Phone Number"/>
+            <input placeholder="Phone Number" type="text" ref={register} name="Phone"/>
             <input placeholder="LinkedIn" type="text" ref={register} name="LinkedIn"/>
           </label>
         </fieldset>
@@ -39,32 +52,9 @@ function ContactForm () {
       <div>
         {infoArr}
       </div>
-        {/* <RenderSubmit info={info} /> */}
+        
     </div>
   );
 };
 
-function RenderSubmit ({info}) {
-
-  return (
-    <div>
-      <div>Name: 
-        {info.Name}
-      </div>
-      <div>Position: 
-        {info.Position}
-      </div>
-      <div>Email: 
-        {info.Email}
-      </div>
-      <div>Phone Number: 
-        {info.Phone}
-      </div>
-      <div>LinkedIn: 
-        {info.LinkedIn}
-      </div>
-    </div>
-  );
-};
-
-export { ContactForm, RenderSubmit };
+export { ContactForm };
