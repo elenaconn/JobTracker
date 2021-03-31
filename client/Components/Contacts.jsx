@@ -1,56 +1,70 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
 function ContactForm () {
   const {register, handleSubmit} = useForm();
-  const { contact, setContact } = useContext();
+  // const { contact, setContact } = useContext();
+  const [info, setInfo] = useState([]);
   
   const onSubmit = (data) => {
-    // set state
-    // but also call the renderSubmit function passing in data
+    console.log('form data', data);
+    setInfo(oldInfo => [...oldInfo, data]);
+    console.log('info', info);
   };
 
+  const infoArr = [<div>hello</div>];
+  useEffect(() => {
+    for (let i = 0; i < info.length; i++){
+      infoArr.push(<div>hello2</div>)
+    }
+    console.log(infoArr);
+  }, []);
+  
   return (
     <div>
-      <form onSubmit={handleSubmit()} autoComplete="off">
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
         <fieldset>
           <label>
             <p>New Contact</p>
             {/* label instead of name? */}
-            <input type="text" ref={register} name="Name"/> 
-            <input type="text" ref={register} name="Position"/>
-            <input type="text" ref={register} name="Email"/>
-            <input type="text" ref={register} name="Phone Number"/>
-            <input type="text" ref={register} name="LinkedIn"/>
+            <input placeholder="Name" type="text" ref={register} name="Name"/> 
+            <input placeholder="Position" type="text" ref={register} name="Position"/>
+            <input placeholder="Email" type="text" ref={register} name="Email"/>
+            <input placeholder="Phone Number" type="text" ref={register} name="Phone Number"/>
+            <input placeholder="LinkedIn" type="text" ref={register} name="LinkedIn"/>
           </label>
         </fieldset>
         <button type="submit" autoComplete="off">Add Contact</button>
       </form>
-      {contactArray}
+      <div>
+        {infoArr}
+      </div>
+        {/* <RenderSubmit info={info} /> */}
     </div>
   );
 };
 
-function renderSubmit (data) {
-  
+function RenderSubmit ({info}) {
+
   return (
     <div>
       <div>Name: 
-        {data.name}
+        {info.Name}
       </div>
       <div>Position: 
-        {data.position}
+        {info.Position}
       </div>
       <div>Email: 
-        {data.email}
+        {info.Email}
       </div>
       <div>Phone Number: 
-        {data.phone}
+        {info.Phone}
       </div>
       <div>LinkedIn: 
-        {data.linkedin}
+        {info.LinkedIn}
       </div>
     </div>
   );
 };
 
+export { ContactForm, RenderSubmit };

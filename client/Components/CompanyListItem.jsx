@@ -7,21 +7,22 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import TechStack from './TechStack.jsx'
+import { ContactForm, RenderSubmit } from './Contacts.jsx';
 
   // dummy functions to be deleted
 
-  function Contacts() {
-    return (
-      <div>
-        <h2>our list of contacts</h2>
-        <h2>name</h2>
-        <h2>phone</h2>
-        <h2>email</h2>
-        <h2>linkedin</h2>
-        <h2>etc</h2>
-      </div>
-    );
-  }
+//   function Contacts() {
+//     return (
+//       <div>
+//         <h2>our list of contacts</h2>
+//         <h2>name</h2>
+//         <h2>phone</h2>
+//         <h2>email</h2>
+//         <h2>linkedin</h2>
+//         <h2>etc</h2>
+//       </div>
+//     );
+//   }
   
   // function TechStack() {
   //   return (
@@ -129,7 +130,7 @@ export default function ControlledAccordions() {
         */}
         <Switch>
           <Route path="/contacts">
-            <Contacts />
+            <ContactForm />
           </Route>
           <Route path="/techStack">
             <TechStack />
