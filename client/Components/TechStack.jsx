@@ -2,9 +2,12 @@ import React, { Component, useState, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+    
+export default function TechStack () {
 
+  const [techStack, setTechStack] = useState('add tech here');
 
-const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
@@ -17,20 +20,14 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
+  
+  function handleClick () {
 
-function handleClick (el) {
-    setTechStack(el)
-};
-// const techStackArr = []
-// for(let i = 0; i < techStack.length; i++){
-    //     techStackArr.push(<h2>-{techStack[i]}</h2>)
-    // }
-    
-export default function TechStack () {
-  const [techStack, setTechStack] = useState('add tech here');
+  };
+
     return (
+      <form>
         <div>
-          <form>
             <TextField
             id="filled-textarea"
             label="Tech Stack"
@@ -38,13 +35,12 @@ export default function TechStack () {
             multiline
             variant="filled"
             onChange={event => setTechStack(event.target.value)}
+            size="medium"
             />
-            <Button variant="outlined" color="secondary" onClick={handleClick()}>
+            {/* <Button variant="outlined" color="secondary" onClick={handleClick}>
             Add Tech
-            </Button>
-          </form>
+            </Button> */}
         </div>
+      </form>  
     );
 };
-
-// considering removing the button
